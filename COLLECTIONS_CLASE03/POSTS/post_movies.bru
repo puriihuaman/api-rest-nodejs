@@ -1,0 +1,28 @@
+meta {
+  name: post_movies
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BACKEND_PATH}}/movies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "sql": "SELECT * FROM movies",
+      "title": "Express + NodeJS",
+      "year": 2010,
+      "director": "Midudev",
+      "duration": 1500,
+      "poster": "https://aprende-node-js",
+      "genre": [
+        "Biography",
+        "Drama",
+        "Action"
+      ],
+      "rate": 9.9
+  }
+}

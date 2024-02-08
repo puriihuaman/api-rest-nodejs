@@ -1,0 +1,15 @@
+meta {
+  name: get_movies_by_genre
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BACKEND_PATH}}/movies/search?genre=Biography
+  body: none
+  auth: none
+}
+
+query {
+  genre: Biography
+}

@@ -1,0 +1,17 @@
+meta {
+  name: update_movie
+  type: http
+  seq: 1
+}
+
+patch {
+  url: {{BACKEND_PATH}}/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "year": 2024
+  }
+}
