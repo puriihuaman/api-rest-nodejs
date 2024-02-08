@@ -66,7 +66,7 @@ const ACCEPTED_ORIGINS = [
 	"https://midudev.com",
 ];
 
-app.get("/movies", (req, res) => {
+app.get("/api/movies", (req, res) => {
 	/**
 	 * Cuando indicamos el *, estamos dando acceso a todos los dominio de origen para que haga petición.
 	 * Cuando expecificamos un ruta (http://localhost:50426), solo ese dominio de origen podría hacer peticiones y obtendría respuesta.
@@ -113,7 +113,7 @@ app.get("/movies", (req, res) => {
  * /movies/search?genre='nombre_genero'
  */
 
-app.get("/movies/search", (req, res) => {
+app.get("/api/movies/search", (req, res) => {
 	const { genre } = req.query;
 
 	if (!genre) return res.status(400).send({ message: "No hay parámetro" });
@@ -131,7 +131,7 @@ app.get("/movies/search", (req, res) => {
  * # El recurso que se identifica con params: id
  * /movies/:id
  */
-app.get("/movies/:id", (req, res) => {
+app.get("/api/movies/:id", (req, res) => {
 	const { id } = req.params;
 	const movie = movies.find((movie) => movie.id === id);
 
@@ -171,7 +171,7 @@ app.get("/movies/:id", (req, res) => {
  * Implementando zod para validar datos
  */
 
-app.post("/movies", (req, res) => {
+app.post("/api/movies", (req, res) => {
 	const { body } = req;
 	const result = validateMovie(body);
 	// const {success, error, data} = validateMovie(body)
@@ -193,7 +193,7 @@ app.post("/movies", (req, res) => {
  * # Actualizando una película
  */
 
-app.patch("/movies/:id", (req, res) => {
+app.patch("/api/movies/:id", (req, res) => {
 	const { id } = req.params;
 	const result = validatePartialMovie(req.body);
 
@@ -217,7 +217,7 @@ app.patch("/movies/:id", (req, res) => {
  * # Eliminar un recurso(película)
  */
 
-app.delete("/movies/:id", (req, res) => {
+app.delete("/api/movies/:id", (req, res) => {
 	const origin = req.header("origin");
 	const { id } = req.params;
 
@@ -240,7 +240,7 @@ app.delete("/movies/:id", (req, res) => {
  * PUT | DELETE | PATCH
  */
 
-app.options("/movies/:id", (req, res) => {
+app.options("/api/movies/:id", (req, res) => {
 	const origin = req.header("origin");
 
 	if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
